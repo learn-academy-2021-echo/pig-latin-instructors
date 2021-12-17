@@ -33,13 +33,29 @@ class App extends Component{
       })
       console.log("vowelsArray:", vowelsArray)
 
-      // your code here!
+      let firstVowel = vowelsArray[0]
+      console.log("firstVowel:", firstVowel)
+      let firstVowelLocation = currentWord.indexOf(firstVowel)
+      console.log("firstVowelLocation:", firstVowelLocation)
+      let qChecker = currentWord[firstVowelLocation - 1]
+      console.log("qChecker:", qChecker)
+      let yLocation = currentWord.indexOf('y')
 
-      // Remember: console.log is your friend :)
-
-
-      // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
-      return currentWord
+      if(firstVowelLocation === 0){
+        return `${currentWord}way`
+      } else if(qChecker === "q"){
+        let beginningWord = currentWord.slice(0, firstVowelLocation + 1)
+        let endWord = currentWord.slice(firstVowelLocation + 1)
+        return `${endWord}${beginningWord}ay`
+      } else if(firstVowelLocation === -1){
+        let beginningWord = currentWord.slice(0, yLocation)
+        let endWord = currentWord.slice(yLocation)
+        return `${endWord}${beginningWord}ay`
+      } else {
+        let beginningWord = currentWord.slice(0, firstVowelLocation)
+        let endWord = currentWord.slice(firstVowelLocation)
+        return `${endWord}${beginningWord}ay`
+      }
     })
 
 
@@ -99,7 +115,7 @@ class App extends Component{
           <button onClick={this.restartGame}>Clear</button>
         </div>
         <p>{this.state.phraseTranslated}</p>
-        <footer>Coded by ~your name here~</footer>
+        <footer>Coded by ~SARAH~</footer>
       </>
     )
   }
